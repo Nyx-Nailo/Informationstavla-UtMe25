@@ -23,3 +23,6 @@ informations tavla
 	- lunch rekommendationer
 	- etc
 	- cirkulera bilder (helskärm)
+
+	- ReactJS
+	- Bootstrap (css lib) getbootstrap.com/
