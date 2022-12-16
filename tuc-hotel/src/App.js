@@ -1,9 +1,9 @@
-import System from './pages/system/system';
+import Routing from './pages/system/routing';
 
 function App() {
     return (
         <div className="App">
-            <System/>
+            <Routing/>
         </div>
     );
 }
