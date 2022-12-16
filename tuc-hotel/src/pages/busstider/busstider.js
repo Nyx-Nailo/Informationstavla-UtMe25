@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const busstider = () => {
   return (
     <div id='busstider'>
