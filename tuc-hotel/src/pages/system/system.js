@@ -29,14 +29,14 @@ const System = () => {
 
     /*  Timer for page change   */
     const pages = [<Dagsschema />, <Lunch />, <Nyheter />, <Vader />, <Busstider />];
-    const viewTime = [5000, 3000, 3000, 3000, 3000];
+    const viewTime = [5, 3, 3, 3, 3]; /*Tid i sekunder som sidan med samma index visas*/
     const [pageNr, setPageNr] = useState(0);
-    const [delay, setDelay] = useState(10);
+    const [delay, setDelay] = useState(0);
     const [page, setPage] = useState(<>Loading</>)
     useEffect(() => {
         const interval = setInterval(() => {
             setPage(pages[pageNr]);
-            setDelay(viewTime[pageNr]);
+            setDelay(viewTime[pageNr]* 1000);
             if (pageNr === pages.length - 1) {
                 setPageNr(0); 
             } else {
