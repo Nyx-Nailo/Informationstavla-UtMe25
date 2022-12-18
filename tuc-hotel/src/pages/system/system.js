@@ -19,7 +19,7 @@ const System = () => {
             <div className='p-4'>
                 <h5 className='m-0'>{time.toLocaleDateString('sv')}</h5>
                 <h2>
-                    {time.getHours()}:{time.getMinutes()}
+                        {time.toLocaleTimeString("sv", { hour: '2-digit', minute: '2-digit' })}
                 </h2>
             </div>
         </div>
