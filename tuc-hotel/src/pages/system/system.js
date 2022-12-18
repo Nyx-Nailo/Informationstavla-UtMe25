@@ -26,6 +26,7 @@ const System = () => {
         );
     };
 
+    /*  Timer för klockan   */
     useEffect(() => {
         const interval = setInterval(() => {
             setTime(new Date());
@@ -33,7 +34,7 @@ const System = () => {
         return () => clearInterval(interval);
     }, []);
 
-    /*  Timer for page change   */
+    /*  Timer för sidorna   */
     useEffect(() => {
         const pages = [<Dagsschema />, <Lunch />, <Nyheter />, <Vader />, <Busstider />];
         /*behöver en sida mer tid ändras det här, tiderna visas i sekunder*/
