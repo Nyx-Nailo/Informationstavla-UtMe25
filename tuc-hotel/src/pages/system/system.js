@@ -19,7 +19,7 @@ const System = () => {
         <div className='p-4'>
           <h5 className='m-0'>{time.toLocaleDateString('sv')}</h5>
           <h2>
-            {time.getHours()}:{time.getMinutes()}
+            {time.getHours()}:{time.getMinutes() > 9 ? time.getMinutes() : '0' + time.getMinutes()}
           </h2>
         </div>
       </div>
@@ -40,7 +40,7 @@ const System = () => {
 
     const interval = setInterval(() => {
       setPage(pages[pageNr]);
-      setDelay(viewTime[pageNr] * 5000);
+      setDelay(viewTime[pageNr] * 10000);
       if (pageNr === pages.length - 1) {
         setPageNr(0);
       } else {
