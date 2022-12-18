@@ -6,7 +6,7 @@ import Lunch from '../lunch/lunch';
 import Nyheter from '../nyheter/nyheter';
 import Vader from '../vader/vader';
 import Busstider from '../busstider/busstider';
-/*Test*/
+
 const System = () => {
     const [time, setTime] = useState(new Date());
     const [pageNr, setPageNr] = useState(0);
