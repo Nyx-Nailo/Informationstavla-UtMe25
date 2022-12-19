@@ -36,7 +36,7 @@ const symbols = [
 ];
 const days = ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag'];
 
-export const VaderIDag = (props) => {
+const VaderIDag = (props) => {
   const firstTemp = props.data[0].temperature;
   const firstWind = props.data[0].wind;
   const firstSymbol = props.data[0].weatherSymbol;
@@ -60,16 +60,12 @@ export const VaderIDag = (props) => {
   );
 };
 
-export const VaderSjuDagar = (props) => {
+const VaderSjuDagar = (props) => {
   return (
     <div className='position-absolute bottom-0 container-fluid'>
       <div className='row text-center'>
         {props.data.map((data, index) => {
-          if (
-            data.time.slice(8, -1).slice(0, 2) !== new Date().getDate() &&
-            index !== 0 &&
-            index <= 7
-          ) {
+          if (data.time.slice(8, -1).slice(0, 2) !== new Date().getDate() && index <= 6) {
             let whatDay = new Date(data.time.replace('T', ' ').replace('Z', '').slice(0, 11));
             let dayNumber = whatDay.getDay();
 
@@ -94,15 +90,49 @@ export const VaderSjuDagar = (props) => {
 };
 
 const Vader = () => {
-  const [weatherData, setWeatherData] = useState();
+  const [todayWeatherData, setTodayWeatherData] = useState();
+  const [sevenDayData, setSevenDayData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  today = yyyy + '-' + mm + '-' + dd;
+
   useEffect(() => {
-    if (!weatherData) {
+    if (
+      typeof sevenDayData === 'undefined' ||
+      typeof todayWeatherData === 'undefined' ||
+      todayWeatherData[0].validTime.slice(0, -10) !== today
+    ) {
       setIsLoading(true);
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
+          const transformedTimeSeries = data.timeSeries.map((timeseries) => {
+            const temperatureParameter = timeseries.parameters.find(
+              (parameter) => parameter.name === 't'
+            );
+            const windParameter = timeseries.parameters.find(
+              (parameter) => parameter.name === 'ws'
+            );
+            const weatherSymbol = timeseries.parameters.find(
+              (parameter) => parameter.name === 'Wsymb2'
+            );
+            return {
+              validTime: timeseries.validTime,
+              temperature: temperatureParameter.values,
+              wind: windParameter.values,
+              weatherSymbol: weatherSymbol.values - 1,
+            };
+          });
+
+          transformedTimeSeries.length = 1;
+
+          setTodayWeatherData(transformedTimeSeries);
+
           const temperatureData = data.timeSeries
             .filter((timePeriod) => timePeriod.validTime.slice(11, -4) === '12:00')
             .map((timePeriod) => {
@@ -124,18 +154,24 @@ const Vader = () => {
               };
             });
 
-          setWeatherData(temperatureData);
+          if (temperatureData[0].time.slice(0, -10) === today) {
+            temperatureData.shift();
+          }
+
+          temperatureData.length = 7;
+
+          setSevenDayData(temperatureData);
         });
       setIsLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isLoading && weatherData) {
+  if (!isLoading && sevenDayData) {
     return (
       <div id='vader'>
-        <VaderIDag data={weatherData} />
-        <VaderSjuDagar data={weatherData} />
+        <VaderIDag data={todayWeatherData} />
+        <VaderSjuDagar data={sevenDayData} />
       </div>
     );
   } else {
