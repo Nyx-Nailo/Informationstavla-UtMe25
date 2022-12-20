@@ -11,7 +11,6 @@ const System = () => {
 
   const [time, setTime] = useState(new Date());
   const [pageNr, setPageNr] = useState(0);
-  const [delay, setDelay] = useState(0);
   const [page, setPage] = useState(<>Loading</>);
   const [progress, setProgress] = useState(0);
   const [elapsed, setElapsed] = useState(0);
@@ -26,7 +25,7 @@ const System = () => {
 
   const Clock = () => {
     return (
-      <div className='position-absolute top-0 end-0 text-center text-bg-dark col shadow-sm'>
+      <div className='position-absolute top-0 end-0 text-center text-bg-dark col shadow-sm' style={{ zIndex: "2" }}>
         <div className='p-4'>
           <h5 className='m-0'>{time.toLocaleDateString('sv')}</h5>
             <h2>
@@ -50,11 +49,10 @@ const System = () => {
 
   useEffect(() => {
     const pages = [<Dagsschema />, <Lunch />, <Nyheter />, <Vader />, <Busstider />];
-    /*behöver en sida mer tid ändras det här, tiderna visas i sekunder*/
-    const viewTime = [10/*Dagsschema*/, 10/*Lunch*/, 10/*Nyheter*/, 10/*Väder*/, 10/*Buss*/];
+    const viewTime = [2/*Dagsschema*/, 2/*Lunch*/, 2/*Nyheter*/, 7/*Väder*/, 2/*Buss*/];
     const interval = setInterval(() => {
       setPage(pages[pageNr]);
-      setDelay(viewTime[pageNr] * 1000);
+      console.log(elapsed);
       setElapsed((prevElapsed) => prevElapsed + 0.01);
       setProgress((elapsed / viewTime[pageNr]) * 100);
       if (elapsed > viewTime[pageNr]) {
