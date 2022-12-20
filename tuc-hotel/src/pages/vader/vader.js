@@ -142,7 +142,7 @@ const VaderIDag = (props) => {
 
 const VaderSjuDagar = (props) => {
   return (
-    <div className='position-absolute bottom-0 container-fluid mb-3'>
+    <div className='position-absolute bottom-0 container-fluid mb-2'>
       <div className='row text-center'>
         {props.data.map((data, index) => {
           if (data.time.slice(8, -1).slice(0, 2) !== new Date().getDate() && index <= 6) {
