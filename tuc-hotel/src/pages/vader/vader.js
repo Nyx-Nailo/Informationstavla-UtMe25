@@ -122,7 +122,7 @@ const VaderIDag = (props) => {
   const firstSymbol = props.data[0].weatherSymbol;
 
   return (
-    <div className='text-center position-absolute top-50 start-50 translate-middle container-fluid'>
+    <div className='text-center position-absolute start-50 translate-middle-x container-fluid mt-5'>
       <div className='card-body p-5' style={{ backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: 'linear-gradient(295deg, rgba(255, 255, 255, .5), rgba(255,255,255, 0.25)), url(' + symbols[props.data[0].weatherSymbol].img }}>
         <div>
           <h6 className='p-0 m-0' style={{ fontSize: '1rem' }}>
