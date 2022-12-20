@@ -122,8 +122,14 @@ const VaderIDag = (props) => {
   const firstSymbol = props.data[0].weatherSymbol;
 
   return (
-    <div className='text-center position-absolute start-50 translate-middle-x container-fluid mt-5'>
-      <div className='card-body p-5' style={{ backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: 'linear-gradient(295deg, rgba(255, 255, 255, .5), rgba(255,255,255, 0.25)), url(' + symbols[props.data[0].weatherSymbol].img }}>
+    <div className='text-center position-absolute start-50 translate-middle-x container-fluid'>
+      <div
+        className='card-body p-5'
+        style={{
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundImage: 'linear-gradient(295deg, rgba(255, 255, 255, .5), rgba(255,255,255, 0.25)), url(' + symbols[props.data[0].weatherSymbol].img,
+        }}>
         <div>
           <h6 className='p-0 m-0' style={{ fontSize: '1rem' }}>
             {days[new Date().getDay()]}
@@ -150,7 +156,13 @@ const VaderSjuDagar = (props) => {
             let dayNumber = whatDay.getDay();
 
             return (
-              <div key={index} className='card col m-2 p-3 shadow-sm' style={{ backgroundPosition: '-115%', backgroundRepeat: 'no-repeat', backgroundImage: 'linear-gradient(295deg, rgba(255, 255, 255, 1), rgba(255,255,255, 0.75), rgba(255,255,255, 0.25)), url(' + symbols[data.weatherSymbol].img }}>
+              <div
+                key={index}
+                className='card col m-2 p-3 shadow-sm'
+                style={{
+                  backgroundRepeat: 'no-repeat',
+                  backgroundImage: 'linear-gradient(295deg, rgba(255, 255, 255, 1), rgba(255,255,255, 0.75), rgba(255,255,255, 0.25)), url(' + symbols[data.weatherSymbol].img,
+                }}>
                 <div>
                   <h6>{days[dayNumber]}</h6>
                 </div>
