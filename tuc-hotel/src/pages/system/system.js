@@ -8,7 +8,6 @@ import Vader from '../vader/vader';
 import Busstider from '../busstider/busstider';
 
 const System = () => {
-
   const [time, setTime] = useState(new Date());
   const [pageNr, setPageNr] = useState(0);
   const [page, setPage] = useState(<>Loading</>);
@@ -17,26 +16,24 @@ const System = () => {
 
   const ProgressBar = () => {
     return (
-      <div className="progress fixed-bottom" style={{ height: "8px" }}>
-        <div className="progress-bar" role="progressbar" aria-label="Basic example" style={{ width: progress + "%" }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+      <div className='progress fixed-bottom' style={{ height: '8px' }}>
+        <div className='progress-bar' role='progressbar' aria-label='Basic example' style={{ width: progress + '%' }} aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'></div>
       </div>
     );
-  }
+  };
 
   const Clock = () => {
     return (
-      <div className='position-absolute top-0 end-0 text-center text-bg-dark col shadow-sm' style={{ zIndex: "2" }}>
+      <div className='position-absolute top-0 end-0 text-center text-bg-dark col shadow-sm' style={{ zIndex: '2' }}>
         <div className='p-4'>
           <h5 className='m-0'>{time.toLocaleDateString('sv')}</h5>
-            <h2>
-              {time.toLocaleTimeString("sv", { hour: '2-digit', minute: '2-digit' })}
-            </h2>
+          <h2>{time.toLocaleTimeString('sv', { hour: '2-digit', minute: '2-digit' })}</h2>
         </div>
       </div>
     );
   };
 
-    /*  Timer för klockan   */
+  /*  Timer för klockan   */
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
@@ -44,12 +41,11 @@ const System = () => {
     return () => clearInterval(interval);
   }, []);
 
-    /*  Timer för sidorna   */
- 
+  /*  Timer för sidorna   */
 
   useEffect(() => {
     const pages = [<Dagsschema />, <Lunch />, <Nyheter />, <Vader />, <Busstider />];
-    const viewTime = [2/*Dagsschema*/, 2/*Lunch*/, 8/*Nyheter*/, 7/*Väder*/, 2/*Buss*/];
+    const viewTime = [2 /*Dagsschema*/, 2 /*Lunch*/, 10 /*Nyheter*/, 3 /*Väder*/, 2 /*Buss*/];
     const interval = setInterval(() => {
       setPage(pages[pageNr]);
       console.log(elapsed);
