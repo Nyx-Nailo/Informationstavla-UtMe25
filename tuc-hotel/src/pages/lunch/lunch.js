@@ -1,13 +1,9 @@
-import { React } from "react";
+import { React } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, CardDeck, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-import "./style.css";
-
-
-
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, CardGroup } from 'reactstrap';
+import './style.css';
 
 const LunchMenu = () => {
-  
   const menu = [
     {
       day: 'Måndag',
@@ -28,63 +24,33 @@ const LunchMenu = () => {
     {
       day: 'Fredag',
       huvudrätt: 'Panerad fisk',
-    }
+    },
+    {
+      day: 'Lördag',
+      huvudrätt: 'Oxfilé',
+    },
+    {
+      day: 'Söndag',
+      huvudrätt: 'Pankakor',
+    },
   ];
 
-
-  const LunchWidget = () => {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
-  
-    let lunchTime;
-    if (currentHour >= 12 && currentHour < 13) {
-      lunchTime = 'It is lunchtime now!';
-    } else {
-      lunchTime = 'Lunchtime is coming soon! Lunch is being served between 12 and 13';
-    }
-  
-    return (
-      <div className="lunch-time-widget">
-        {lunchTime}
-      </div>
-    );
-  };
-
-  const DinnerWidget = () => {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
-  
-    let DinnerTime;
-    if (currentHour >= 17 && currentHour < 20) {
-      DinnerTime = 'It is Dinner time now!';
-    } else {
-      DinnerTime = 'Dinner time is coming soon! Dinner is being served between 17 and 20';
-    }
-  
-    return (
-      <div className="Dinner-Time-Widget">
-        {DinnerTime}
-      </div>
-    );
-  };
-
-
   return (
-    <div className="lunch-menu">
-      
+    <div className='lunch-menu p-2'>
       <h1>Veckomeny</h1>
-      <CardDeck>
-        {menu.map(item => (
-             <Card key={item.day} color="Lightblue" className="text-center">
+      <CardGroup>
+        {menu.map((item) => (
+          <Card key={item.day} color='Lightblue'>
             <CardBody>
-              <CardTitle>{item.day}</CardTitle>
-              <CardSubtitle>Huvudrätt: {item.huvudrätt}</CardSubtitle>
+              <CardTitle tag='h5'>{item.day}</CardTitle>
+              <CardSubtitle tag='h6'>Huvudrätt</CardSubtitle>
+              <CardText>{item.huvudrätt}</CardText>
             </CardBody>
           </Card>
         ))}
-      </CardDeck>
+      </CardGroup>
     </div>
   );
 };
 
-export default LunchMenu; 
+export default LunchMenu;

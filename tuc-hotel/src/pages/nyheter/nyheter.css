@@ -1,38 +1,47 @@
-div#nyheter > div#container{
-width: 44vmin;
-position: absolute;
-transform: translate(-50%,-50%);
-top: 50%;
-left: 50%;
-overflow:hidden;
-border: 10px solid grey;
-border-radius: 8px;
-box-shadow:10px 25px 30px rgba(0, 0, 0, 0.3);
-}
-div#nyheter > div#container > div#wrapper{
-width: 100%;
-display: flex;
-animation: slide 10s infinite;
-}
-@keyframes slide{
-    0%{
-       transform: translateX(0); 
-    }
-    25%{
-        transform: translateX(-100%);
-    }
-    50%{
-        transform: translateX(-200%)
-    }
-    75%{
-        transform: translateX(-300%);
-    }
-    100%{
-        transform: translateX(0);
-    }
-}
-div#nyheter > div#container > div#wrapper> img{
-width: 400px;
-height: 600px;
+@keyframes display {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
 }
 
+div#container {
+  position: relative;
+}
+
+div#container > div#wrapper > img {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 200px);
+  opacity: 0;
+  animation: display 16s infinite;
+  width: 400px;
+  border: 2px solid #000;
+}
+
+div#container > div#wrapper > img:nth-child(2) {
+  animation-delay: 4s;
+  height: 70vh;
+}
+div#container > div#wrapper > img:nth-child(3) {
+  animation-delay: 8s;
+}
+div#container > div#wrapper > img:nth-child(4) {
+  animation-delay: 12s;
+}
