@@ -1,0 +1,38 @@
+div#nyheter > div#container{
+width: 44vmin;
+position: absolute;
+transform: translate(-50%,-50%);
+top: 50%;
+left: 50%;
+overflow:hidden;
+border: 10px solid grey;
+border-radius: 8px;
+box-shadow:10px 25px 30px rgba(0, 0, 0, 0.3);
+}
+div#nyheter > div#container > div#wrapper{
+width: 100%;
+display: flex;
+animation: slide 10s infinite;
+}
+@keyframes slide{
+    0%{
+       transform: translateX(0); 
+    }
+    25%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-200%)
+    }
+    75%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+div#nyheter > div#container > div#wrapper> img{
+width: 400px;
+height: 600px;
+}
+

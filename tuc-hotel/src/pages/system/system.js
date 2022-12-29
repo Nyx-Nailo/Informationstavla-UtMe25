@@ -49,7 +49,7 @@ const System = () => {
 
   useEffect(() => {
     const pages = [<Dagsschema />, <Lunch />, <Nyheter />, <Vader />, <Busstider />];
-    const viewTime = [2/*Dagsschema*/, 2/*Lunch*/, 2/*Nyheter*/, 7/*Väder*/, 2/*Buss*/];
+    const viewTime = [2/*Dagsschema*/, 2/*Lunch*/, 8/*Nyheter*/, 7/*Väder*/, 2/*Buss*/];
     const interval = setInterval(() => {
       setPage(pages[pageNr]);
       console.log(elapsed);
