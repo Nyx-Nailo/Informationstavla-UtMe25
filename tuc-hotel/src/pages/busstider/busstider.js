@@ -1,18 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const time = (shiftM) => {
+  const date = new Date();
+  const time = (date.setMinutes(date.getMinutes() + shiftM), String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0'));
+
+  return time;
+};
+
 const Busstider = () => {
   const buss = [
-    { plats: 'Fröstorpsgatan (läge B)', tid: '13:45' },
-    { plats: 'Tornby Park', tid: '13:47' },
-    { plats: 'Tornet', tid: '13:48' },
-    { plats: 'Linköpings resecentrum (läge B3)', tid: '13:53' },
+    { plats: 'Fröstorpsgatan (läge B)', tid: time(4) },
+    { plats: 'Tornby Park', tid: time(7) },
+    { plats: 'Tornet', tid: time(11) },
+    { plats: 'Linköpings resecentrum (läge B3)', tid: time(16) },
   ];
 
   const tag = [
-    { plats: 'Linköping C', tid: '14:52', avgång: '14:54', spår: '2', info: 'SJ Snabbtåg\nBistro\nVagnsordning 7-6-5-4-3-1' },
-    { plats: 'Norrköping C', tid: '15:17', avgång: '15:18', spår: '7a', info: 'SJ Snabbtåg\nBistro\nVagnsordning 7-6-5-4-3-1' },
-    { plats: 'Södertälje Syd', tid: '16:20', avgång: '', spår: '5', info: 'SJ Snabbtåg\nIngen påstigning' },
-    { plats: 'Stockholm C', tid: '16:38', avgång: '', spår: '19a', info: 'SJ Snabbtåg\nIngen påstigning' },
+    { plats: 'Linköping C', tid: time(10), avgång: time(14), spår: '2', info: 'SJ Snabbtåg Bistro Vagnsordning 7-6-5-4-3-1' },
+    { plats: 'Norrköping C', tid: time(43), avgång: time(45), spår: '7a', info: 'SJ Snabbtåg Bistro Vagnsordning 7-6-5-4-3-1' },
+    { plats: 'Södertälje Syd', tid: time(84), avgång: time(89), spår: '5', info: 'SJ Snabbtåg Ingen påstigning' },
+    { plats: 'Stockholm C', tid: time(124), avgång: time(143), spår: '19a', info: 'SJ Snabbtåg Ingen påstigning' },
   ];
 
   const divStyle = {
@@ -66,11 +73,11 @@ const Busstider = () => {
   return (
     <div id='busstider' style={divStyle}>
       <div style={{ width: 'fit-content' }}>
-        <h1 style={{ textAlign: 'center' }}>Buss</h1>
+        <h1>Buss</h1>
         <Table trans={buss} check={true} />
       </div>
       <div style={{ width: 'fit-content' }}>
-        <h1 style={{ textAlign: 'center' }}>Tåg</h1>
+        <h1>Tåg</h1>
         <Table trans={tag} check={false} />
       </div>
     </div>
