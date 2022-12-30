@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const time = (shiftM) => {
   const date = new Date();
-  const time = (date.setMinutes(date.getMinutes() + shiftM), (date.getHours() < 10 ? '0' : '') + date.getHours() + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes());
+  const time = (date.setMinutes(date.getMinutes() + shiftM), String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0'));
 
   return time;
 };
