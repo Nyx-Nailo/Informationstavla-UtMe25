@@ -29,7 +29,7 @@ div#container > div#wrapper > img {
   left: calc(50% - 15vw);
   opacity: 0;
   animation: display 16s infinite;
-  width: 30vw;
+  width: 27vw;
   border: 2px solid #000;
   object-fit: contain;
 }

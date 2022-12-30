@@ -16,7 +16,7 @@ const System = () => {
 
   const ProgressBar = () => {
     return (
-      <div className='progress fixed-bottom' style={{ height: '8px' }}>
+      <div className='progress fixed-bottom' style={{ height: '8px', borderRadius: '0' }}>
         <div className='progress-bar' role='progressbar' aria-label='Basic example' style={{ width: progress + '%' }} aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'></div>
       </div>
     );
