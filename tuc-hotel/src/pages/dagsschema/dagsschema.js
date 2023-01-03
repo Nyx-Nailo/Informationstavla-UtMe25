@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-const dagsschema = () => {
+import Schema from "./Schema.js";
+function dagsschema() {
   return (
     <div id='dagsschema'>
-      <h1>Dagschema!</h1>
+      <Schema/>
     </div>
   );
-};
+}
 
 export default dagsschema;
